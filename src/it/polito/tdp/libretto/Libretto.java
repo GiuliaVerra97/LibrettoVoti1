@@ -16,9 +16,6 @@ public class Libretto {
 	}
 	
 	
-	/*public void add(int voto, String corso, LocalDate data) {
-		
-	}*/
 	
 	/**
 	 * aggiunge nuovo voto al libretto
@@ -28,5 +25,29 @@ public class Libretto {
 	public void add(Voto v) {
 		voti.add(v);
 	}
+	
+	
+	
+	
+	/**
+	 * Seleziona il sottoinsieme di voti che hanno il punteggio specificato
+	 * @param punti punteggio da ricerca
+	 * @return lista di {@link Voto} aventi quel punteggio (eventualmente vuota)
+	 */
+	
+	public List<Voto> cercaVoti(int voto){
+		
+		List<Voto> result=new ArrayList<Voto>();
+		
+		for(Voto v: this.voti) {
+			if(v.getPunti()==voto) {
+				result.add(v);
+			}
+		}
+		
+		return result;
+	}
+	
+	
 	
 }
