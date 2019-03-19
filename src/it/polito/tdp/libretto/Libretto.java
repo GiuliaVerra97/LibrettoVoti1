@@ -20,10 +20,17 @@ public class Libretto {
 	/**
 	 * aggiunge nuovo voto al libretto
 	 * @param v il {@link Voto} da aggiungere
+	 * @return {@code true} nel caso normale, {@code false} se non è riusciro ad aggiungere nulla
 	 */
 	
-	public void add(Voto v) {
-		voti.add(v);
+	public boolean add(Voto v) {
+		
+		if(!this.esisteGiaVoto(v) && !this.votoInConflitto(v)) {
+			voti.add(v);		//add restisuisce true se è stato aggiunto un elemento, false altrimenti
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	
@@ -81,6 +88,28 @@ public class Libretto {
 		return (v.getPunti()==this.voti.get(posizione).getPunti());		//ritorno il valore dell'uguaglianza ovvere o false o true	
 		}
 	}
+	
+	/**
+	 * Mi dice se il {@link Voto} {@code v} è in conflitto con uno dei voti esistenti. 
+	 * Se il voto non esiste, non c'è conflitto. Se esiste ed ha un punteggio dicerso, c'è conflitto
+	 * @param v
+	 * @return false se non c'è conflitto, true se c'è conflitto
+	 */
+	
+	
+	public boolean votoInConflitto(Voto v) {
+		int posizione=this.voti.indexOf(v);
+		if(posizione==-1) {
+			return false;
+		}else {
+		return (v.getPunti()!=this.voti.get(posizione).getPunti());		//ritorno il valore dell'uguaglianza ovvere o false o true	
+		}
+	}
+	
+	public String toString() {
+		return this.voti.toString();
+	}
+	
 	
 	
 	
