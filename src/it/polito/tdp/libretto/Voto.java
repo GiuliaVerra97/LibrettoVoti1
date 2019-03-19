@@ -82,7 +82,9 @@ public class Voto {
 	}
 
 	
-	
+	public Voto clone() {
+		return new Voto(this.punti, this.corso, this.data);
+	}
 	
 	
 	

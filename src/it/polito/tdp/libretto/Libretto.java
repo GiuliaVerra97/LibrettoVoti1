@@ -9,7 +9,7 @@ public class Libretto {
 	//mantengo le interfacce più generali possibili
 	
 	private List<Voto> voti;		//meglio essere il più generale possibile
-	
+	//private indica che è accessibile solo ai metodi della stessa classe in cui viene dichiarata la variabile private
 	
 	public Libretto() {
 		this.voti=new ArrayList<Voto>();	
@@ -106,10 +106,48 @@ public class Libretto {
 		}
 	}
 	
+	
 	public String toString() {
 		return this.voti.toString();
 	}
 	
+	//posso restituire anche istanze della stessa classe in cui sto lavorando
+	public Libretto librettoMigliorato() {
+		Libretto librettoNuovo=new Libretto();		
+		/*											
+		for(Voto v: this.voti) {				//quando modifico l'elemento di una lista sto in realtà modificando anche la lista vecchia, perchè sto separando solo i puntatori e non gli oggetti
+			librettoNuovo.add(v);				// sto mantenendo collegate le liste, esse rimangono uguali
+		}										//in questo metodo sia il libretto vecchio sia il libretto nuovo hanno gli stessi elementi
+		*/
+		for(Voto v: this.voti) {
+			librettoNuovo.add(v.clone());		// per creare, clonare due liste che inizialmente saranno uguali, ma poi verranno utilizzate separatamente
+		}	
+		
+		
+		for(Voto v:librettoNuovo.voti) {
+			
+			int punti=v.getPunti();
+			if(punti<=24) {
+				punti=punti+1;
+			}else if(punti<=28) {
+				punti=punti +2;
+			}
+			v.setPunti(punti);
+		}
+		
+		return librettoNuovo;
+	}
+	
+	
+	public void cancellaVotiScarsi() {
+		List<Voto> cancellare=new ArrayList<Voto>();
+		for(Voto v:this.voti) {
+			if(v.getPunti()<24) {
+				cancellare.add(v);
+			}
+		}
+		this.voti.removeAll(cancellare);
+	}
 	
 	
 	
