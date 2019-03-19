@@ -32,7 +32,14 @@ public class TestLibretto {
 		System.out.println(a1);
 		System.out.println(a3);
 
-	
+		
+		Voto votoGiusto=new Voto(18, "Geometria", LocalDate.now());		//now mi da la data di oggi
+		Voto votoSbagliato=new Voto(28, "Geometria", LocalDate.now());	
+		Voto mancante=new Voto(30, "Merendine", LocalDate.now());
+		System.out.format("Il voto %s è %s\n", votoGiusto.toString(), libr.esisteGiaVoto(votoGiusto));
+		System.out.format("Il voto %s è %s\n",votoSbagliato.toString(), libr.esisteGiaVoto(votoSbagliato));
+		System.out.format("Il voto %s è %s\n",mancante.toString(), libr.esisteGiaVoto(mancante));
+
 	}
 
 }

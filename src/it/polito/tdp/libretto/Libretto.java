@@ -54,18 +54,15 @@ public class Libretto {
 	 * @param nomeEsame nome del corso da ricercare
 	 * @return il {@link Voto} corrispondente a quanto cercato
 	 */
-	
-	
-	
 	public Voto cercaEsame(String nomeEsame) {
 		
-		for(Voto v: this.voti) {
-			if(nomeEsame.equals(v.getCorso())) {
-				return v;
-			}
+		Voto v=new Voto(0,nomeEsame, null);	//creo oggetto fasullo, incompleto che mi serve per criterio di ricerca
+		int posizione=this.voti.indexOf(v);		//cerca all'interno della lista  se c'è il voto v, ma noi non abbiamo un oggetto voto, ma solo il nome del corso quindi creo dei campi fasulli dell'oggetto
+		if(posizione==-1) {
+			return null;
+		}else {
+		return this.voti.get(posizione);
 		}
-		
-		return null;
 	}
 	
 	
@@ -76,15 +73,12 @@ public class Libretto {
 	 * @return {@code true} se non ha trovato un corso oppure l'ha trovato con voto diverso
 	 */
 	public boolean esisteGiaVoto(Voto v) {
-		Voto trovato=this.cercaEsame(v.getCorso());
-		if(trovato==null) {
+		
+		int posizione=this.voti.indexOf(v);
+		if(posizione==-1) {
 			return false;
-		}
-		if(trovato.getPunti()==v.getPunti()) {
-			return true;
-		}	
-		else {
-			return false;
+		}else {
+		return (v.getPunti()==this.voti.get(posizione).getPunti());		//ritorno il valore dell'uguaglianza ovvere o false o true	
 		}
 	}
 	
