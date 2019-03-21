@@ -24,15 +24,17 @@ public class TestLibretto {
 		libr.add(new Voto(25, "Logistica", LocalDate.of(2019, 2, 1)));
 		libr.add(new Voto(27, "Programmazione ad oggetti", LocalDate.of(2019, 1, 25)));
 
+		System.out.println("\n**Cercare esami con il voto=25**");
 		List<Voto> venticinque=libr.cercaVoti(25);
 		System.out.println(venticinque);
 		
+		System.out.println("\n**Cercare erami**");
 		Voto a1=libr.cercaEsame("Analisi I");
 		Voto a3=libr.cercaEsame("Analisi III");
 		System.out.println(a1);
 		System.out.println(a3);
 
-		
+		System.out.println("\n**Voti esistenti e in conflitto**");
 		Voto votoGiusto=new Voto(18, "Geometria", LocalDate.now());		//now mi da la data di oggi
 		Voto votoSbagliato=new Voto(28, "Geometria", LocalDate.now());	
 		Voto mancante=new Voto(30, "Merendine", LocalDate.now());
@@ -43,17 +45,21 @@ public class TestLibretto {
 		System.out.format("Il voto %s è %s\n",votoSbagliato.toString(), libr.votoInConflitto(votoSbagliato));
 		System.out.format("Il voto %s è %s\n",mancante.toString(), libr.votoInConflitto(mancante));
 
+		
+		System.out.println("\n**Lista con aggiunta di voti giusti, sbagliati, mancanti**");
 		libr.add(votoGiusto);
 		libr.add(votoSbagliato);
 		libr.add(mancante);
 		System.out.println(libr.toString());
 		
 		
-		System.out.println("**Migliorare libretto**");
+		System.out.println("\n**Migliorare libretto**");
 		Libretto migliore=libr.librettoMigliorato();
 		System.out.println(libr.toString());
 		System.out.println(migliore.toString());
 
+		
+		System.out.println("\n**Cancellati voti scarsi**");
 		migliore.cancellaVotiScarsi();
 		System.out.println(migliore.toString());
 

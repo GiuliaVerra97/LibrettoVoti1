@@ -64,7 +64,7 @@ public class Libretto {
 	public Voto cercaEsame(String nomeEsame) {
 		
 		Voto v=new Voto(0,nomeEsame, null);	//creo oggetto fasullo, incompleto che mi serve per criterio di ricerca
-		int posizione=this.voti.indexOf(v);		//cerca all'interno della lista  se c'è il voto v, ma noi non abbiamo un oggetto voto, ma solo il nome del corso quindi creo dei campi fasulli dell'oggetto
+		int posizione=this.voti.indexOf(v);		
 		if(posizione==-1) {
 			return null;
 		}else {
@@ -76,8 +76,8 @@ public class Libretto {
 	/**
 	 * Dato un {@link Voto}, determina se esiste già un voto con uguale corso ed uguale punteggio.
 	 * @param v
-	 * @return {@code true} se ha trovato un corso e punteggio uguali
-	 * @return {@code true} se non ha trovato un corso oppure l'ha trovato con voto diverso
+	 * @return {@code true} se ha trovato un corso e punteggio uguali,
+	 * 			{@code false} se non ha trovato un corso oppure l'ha trovato con voto diverso
 	 */
 	public boolean esisteGiaVoto(Voto v) {
 		
@@ -91,7 +91,7 @@ public class Libretto {
 	
 	/**
 	 * Mi dice se il {@link Voto} {@code v} è in conflitto con uno dei voti esistenti. 
-	 * Se il voto non esiste, non c'è conflitto. Se esiste ed ha un punteggio dicerso, c'è conflitto
+	 * Se il voto non esiste, non c'è conflitto. Se esiste ed ha un punteggio diverso, c'è conflitto
 	 * @param v
 	 * @return false se non c'è conflitto, true se c'è conflitto
 	 */
@@ -125,12 +125,11 @@ public class Libretto {
 		
 		
 		for(Voto v:librettoNuovo.voti) {
-			
 			int punti=v.getPunti();
 			if(punti<=24) {
 				punti=punti+1;
 			}else if(punti<=28) {
-				punti=punti +2;
+				punti=punti+2;
 			}
 			v.setPunti(punti);
 		}

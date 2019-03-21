@@ -81,6 +81,9 @@ public class Voto {
 		return true;
 	}
 
+	/**
+	 * creo una copia esatta del voto in esame
+	 */
 	
 	public Voto clone() {
 		return new Voto(this.punti, this.corso, this.data);
